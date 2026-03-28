@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agent Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#7c4dff;--purple-light:#9c6fff;--blue:#1a5fff;--blue-dark:#0a3acc;
+  --card-bg:rgba(255,255,255,0.07);--border:rgba(180,140,255,0.22);
+  --radius:18px;
+}
+html,body{min-height:100%;width:100%}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  min-height:100vh;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;overflow-x:hidden;
+  background:linear-gradient(160deg,#0a0520 0%,#08081c 60%,#04102a 100%);
+}
+
+/* ─── Animated bg orbs ─── */
+.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.14;pointer-events:none;animation:orb-float 9s ease-in-out infinite alternate;}
+.orb1{width:480px;height:480px;background:radial-gradient(circle,#7c4dff,#3b1fa8);top:-140px;left:-120px;}
+.orb2{width:380px;height:380px;background:radial-gradient(circle,#1a5fff,#00288a);bottom:-100px;right:-100px;animation-delay:-4.5s;}
+@keyframes orb-float{from{transform:translate(0,0) scale(1);}to{transform:translate(35px,25px) scale(1.07);}}
+
+/* ─── Page system ─── */
+.page{display:none;width:100%;max-width:520px;animation:rise .6s cubic-bezier(.22,.68,0,1.15) both}
+.page.active{display:flex;flex-direction:column;align-items:center;}
+@keyframes rise{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ─── Card shell (shared) ─── */
+.card{
+  width:100%;background:rgba(14,7,38,0.62);
+  backdrop-filter:blur(30px) saturate(1.4);
+  -webkit-backdrop-filter:blur(30px) saturate(1.4);
+  border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 28px 72px rgba(0,0,0,0.52),0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+.card-header{padding:28px 32px 0;display:flex;align-items:center;gap:14px}
+.icon-wrap{width:88px;height:60px;flex-shrink:0}
+.icon-wrap img{width:100%;height:100%;object-fit:contain;display:block}
+.page-tag{font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.15em;color:#c084fc;text-transform:uppercase;margin-bottom:3px;opacity:.75}
+h1{font-size:21px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.15}
+.hline{height:1px;margin:20px 32px 0;background:linear-gradient(90deg,rgba(124,77,255,.5),rgba(77,182,245,.3),transparent)}
+.card-body{padding:20px 32px 28px}
+
+/* ─── Fields ─── */
+.field{margin-bottom:16px}
+label.field-lbl{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(200,180,255,.8);margin-bottom:7px}
+.req{color:#c084fc;font-size:14px;line-height:1}
+input,select{
+  width:100%;background:rgba(255,255,255,0.07);
+  border:1.5px solid rgba(180,140,255,0.18);border-radius:12px;
+  padding:11px 15px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:14px;color:#fff;outline:none;
+  transition:border-color .2s,box-shadow .2s,background .2s;
+  appearance:none;-webkit-appearance:none;
+}
+input::placeholder{color:rgba(255,255,255,.28)}
+input:focus,select:focus{border-color:rgba(124,77,255,.75);box-shadow:0 0 0 3px rgba(124,77,255,.18);background:rgba(255,255,255,.1)}
+.select-wrap{position:relative}
+.select-wrap::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;
+  border-top:6px solid rgba(200,180,255,.5);pointer-events:none;
+}
+select option{background:#0e0726;color:#fff}
+input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1) hue-rotate(195deg) brightness(1.3);cursor:pointer;}
+
+/* Radio group (Email Productivity form) */
+.radio-group{display:flex;gap:10px;}
+.radio-option{flex:1;position:relative;}
+.radio-option input[type="radio"]{display:none;}
+.radio-option label{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px 14px;border-radius:11px;border:1.5px solid rgba(180,140,255,0.18);
+  background:rgba(255,255,255,.05);color:rgba(200,180,255,.7);
+  font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;
+  text-transform:none;letter-spacing:0;margin-bottom:0;user-select:none;
+}
+.radio-dot{width:10px;height:10px;border:2px solid rgba(140,180,255,.6);border-radius:50%;transition:all .2s;flex-shrink:0;}
+.radio-option input[type="radio"]:checked + label{
+  background:rgba(60,100,220,.35);border-color:rgba(100,160,255,.65);
+  color:#fff;box-shadow:0 0 0 2px rgba(80,140,255,.2);
+}
+.radio-option input[type="radio"]:checked + label .radio-dot{background:#6abeff;border-color:#6abeff;box-shadow:0 0 8px rgba(106,190,255,.6);}
+
+/* ─── Buttons ─── */
+.btn{
+  width:100%;margin-top:4px;padding:13px;border:none;border-radius:13px;
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:.02em;cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .15s,box-shadow .2s,opacity .2s;
+}
+.btn-purple{
+  background:linear-gradient(135deg,#7c4dff 0%,#9c6fff 55%,#c084fc 100%);
+  box-shadow:0 6px 26px rgba(124,77,255,.44);
+}
+.btn-blue{
+  background:linear-gradient(135deg,#1a5fff 0%,#0a3acc 60%,#1a3fa8 100%);
+  box-shadow:0 6px 22px rgba(20,80,255,.4);
+}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.16),transparent);opacity:0;transition:opacity .2s}
+.btn:hover{transform:translateY(-2px);opacity:.94}
+.btn:hover::before{opacity:1}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* ─── Back button ─── */
+.back-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-bottom:14px;padding:9px 18px;border-radius:30px;border:none;
+  background:rgba(255,255,255,.07);color:rgba(200,180,255,.7);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s;align-self:flex-start;
+  border:1px solid rgba(180,140,255,.15);
+}
+.back-btn:hover{background:rgba(124,77,255,.18);color:#fff;border-color:rgba(180,140,255,.35);}
+.back-btn svg{flex-shrink:0}
+
+/* ─── Home page ─── */
+.home-title{text-align:center;margin-bottom:30px;}
+.home-title .top-tag{font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.2em;color:#c084fc;text-transform:uppercase;margin-bottom:10px;opacity:.75;display:block}
+.home-title h1{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1}
+.home-title p{font-size:13px;color:rgba(200,180,255,.55);margin-top:7px}
+.home-cards{display:flex;flex-direction:column;gap:14px;width:100%;}
+.home-card{
+  display:flex;align-items:center;gap:18px;padding:20px 22px;
+  border-radius:16px;border:1.5px solid rgba(180,140,255,.16);
+  background:rgba(14,7,38,.5);cursor:pointer;transition:all .25s;
+  backdrop-filter:blur(20px);text-align:left;
+  box-shadow:0 4px 24px rgba(0,0,0,.25);
+}
+.home-card:hover{border-color:rgba(124,77,255,.5);background:rgba(30,10,70,.6);transform:translateY(-2px);box-shadow:0 10px 36px rgba(124,77,255,.2);}
+.home-card-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;}
+.hc-purple{background:linear-gradient(135deg,rgba(124,77,255,.25),rgba(156,111,255,.15));border:1px solid rgba(124,77,255,.3);}
+.hc-blue{background:linear-gradient(135deg,rgba(26,95,255,.25),rgba(10,58,204,.15));border:1px solid rgba(26,95,255,.3);}
+.home-card-text h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:3px}
+.home-card-text p{font-size:12px;color:rgba(200,180,255,.5)}
+.home-card-arrow{margin-left:auto;color:rgba(200,180,255,.3);font-size:18px;transition:transform .2s,color .2s;}
+.home-card:hover .home-card-arrow{transform:translateX(4px);color:rgba(200,180,255,.7);}
+
+/* ─── Toast ─── */
+.toast{
+  position:fixed;bottom:26px;left:50%;
+  transform:translateX(-50%) translateY(60px);
+  background:rgba(14,7,38,.93);border:1px solid #c084fc;color:#c084fc;
+  padding:11px 22px;border-radius:40px;font-size:13px;font-weight:600;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  transition:transform .4s cubic-bezier(.22,.68,0,1.2),opacity .3s;
+  opacity:0;z-index:999;display:flex;align-items:center;gap:8px;
+  white-space:nowrap;backdrop-filter:blur(12px);pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* Spinner */
+.spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── Responsive ─── */
+@media(max-width:480px){
+  .card-header,.card-body{padding-left:20px;padding-right:20px}
+  .hline{margin-left:20px;margin-right:20px}
+  h1{font-size:18px}
+  .radio-group{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- ══════════════════ HOME PAGE ══════════════════ -->
+<div class="page active" id="page-home">
+  <div class="home-title">
+    <span class="top-tag">Agent Portal</span>
+    <h1>Choose a Form</h1>
+    <p>Select the form you'd like to fill out</p>
+  </div>
+  <div class="home-cards">
+    <button class="home-card" onclick="goTo('page-case')">
+      <div class="home-card-icon hc-purple">📋</div>
+      <div class="home-card-text">
+        <h3>Case Submission</h3>
+        <p>Submit a new case with agent, case ID & origin</p>
+      </div>
+      <div class="home-card-arrow">›</div>
+    </button>
+    <button class="home-card" onclick="goTo('page-email')">
+      <div class="home-card-icon hc-blue">📧</div>
+      <div class="home-card-text">
+        <h3>Email Productivity</h3>
+        <p>Log productivity — agent, origin, case, date & email</p>
+      </div>
+      <div class="home-card-arrow">›</div>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════ CASE SUBMISSION ══════════════════ -->
+<div class="page" id="page-case">
+  <button class="back-btn" onclick="goTo('page-home')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Home
+  </button>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon-wrap">
+        <!-- Case submission icon (same as original) -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrCAYAAADw4IlaAABO60lEQVR4nO29e7Rt2V3X+fnNx1prP87j3lu37q1XKiESUEACBFBAFBWI7YPGpm2kBVFppXvQQ4baDuxWW+xupLu1BVQw0hhf3WgLjZEAQSFRCeRBEgJ5UFJJqlKp56177j2P/VhrzTl//fdca++999vnHmMlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==" alt=""/>
+      </div>
+      <div>
+        <div class="page-tag">Form 1</div>
+        <h1>Case Submission</h1>
+      </div>
+    </div>
+    <div class="hline"></div>
+    <div class="card-body">
+
+      <div class="field">
+        <label class="field-lbl" for="cs-name">Name <span class="req">*</span></label>
+        <div class="select-wrap">
+          <select id="cs-name" required>
+            <option value="" disabled selected>Select agent name</option>
+            <option>Deepak Saw</option>
+            <option>Siddharth Jaiswal</option>
+            <option>Deepak Kumar</option>
+            <option>Priyanshu Sekhar</option>
+            <option>Dipok Yadav</option>
+            <option>Mohit Gupta</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-lbl" for="cs-caseId">Case ID <span class="req">*</span></label>
+        <input type="text" id="cs-caseId" placeholder="Enter Case ID" required autocomplete="off"/>
+      </div>
+
+      <div class="field">
+        <label class="field-lbl" for="cs-origin">Origin <span class="req">*</span></label>
+        <div class="select-wrap">
+          <select id="cs-origin" required>
+            <option value="" disabled selected>Select origin</option>
+            <option>Croma</option>
+            <option>Nykaa</option>
+            <option>Firstcry- Portal</option>
+            <option>Firstcry- Email</option>
+            <option>Vijay Sales</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-purple" onclick="submitCase()">Submit Case →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ EMAIL PRODUCTIVITY ══════════════════ -->
+<div class="page" id="page-email">
+  <button class="back-btn" onclick="goTo('page-home')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Home
+  </button>
+  <div class="card">
+    <div class="card-header">
+      <div class="home-card-icon hc-blue" style="width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;">📧</div>
+      <div style="margin-left:4px">
+        <div class="page-tag">Form 2</div>
+        <h1>Email Productivity</h1>
+      </div>
+    </div>
+    <div class="hline"></div>
+    <div class="card-body">
+
+      <div class="field">
+        <label class="field-lbl" for="ep-name">👤 Agent Name <span class="req">*</span></label>
+        <div class="select-wrap">
+          <select id="ep-name" required>
+            <option value="" disabled selected>Select Agent</option>
+            <option value="Siddharth">Siddharth</option>
+            <option value="Dipok">Dipok</option>
+            <option value="Deepak Kumar">Deepak Kumar</option>
+            <option value="Deepak Saw">Deepak Saw</option>
+            <option value="Priyanshu">Priyanshu</option>
+            <option value="Mohit">Mohit</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-lbl">🌐 Origin <span class="req">*</span></label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="ep-web" name="ep-origin" value="Web" required/>
+            <label for="ep-web"><span class="radio-dot"></span>Web</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="ep-email-r" name="ep-origin" value="Email"/>
+            <label for="ep-email-r"><span class="radio-dot"></span>Email</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="ep-eshop" name="ep-origin" value="Eshop"/>
+            <label for="ep-eshop"><span class="radio-dot"></span>Eshop</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-lbl" for="ep-caseNumber">🗂️ Case Number <span class="req">*</span></label>
+        <input type="text" id="ep-caseNumber" placeholder="Enter case number" required autocomplete="off"/>
+      </div>
+
+      <div class="field">
+        <label class="field-lbl" for="ep-date">📅 Date <span class="req">*</span></label>
+        <input type="date" id="ep-date" required/>
+      </div>
+
+      <div class="field">
+        <label class="field-lbl" for="ep-email">✉️ Email Address <span class="req">*</span></label>
+        <input type="email" id="ep-email" placeholder="e.g. name@example.com" required autocomplete="off"/>
+      </div>
+
+      <button class="btn btn-blue" id="ep-submitBtn" onclick="submitEmailProductivity()">Submit Entry →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span id="toastMsg">Done!</span>
+</div>
+
+<script>
+// ─── Google Sheet URLs ─────────────────────────────────────────────────────
+var CASE_GSHEET_URL = 'https://script.google.com/macros/s/AKfycby50lm964MC3UKXDdDORr1pS93pdmGtqB5-NQEstVR6iYQHGErjzps55QRLEMGeUObSMA/exec';
+var EMAIL_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbw-fm5b_bjvFD8FR2-sHCRNTW-mxqYFSCVTf326u6e2TMc-ewN1Bhn3D-hj2_HgllIcog/exec';
+// ──────────────────────────────────────────────────────────────────────────
+
+// Set today's date default on load
+window.addEventListener('DOMContentLoaded', function(){
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementById('ep-date').value = today;
+});
+
+// ─── Navigation ───────────────────────────────────────────────────────────
+function goTo(pageId){
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var target = document.getElementById(pageId);
+  target.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ─── Toast ────────────────────────────────────────────────────────────────
+var _toastTimer;
+function showToast(msg, isError){
+  var t = document.getElementById('toast');
+  var m = document.getElementById('toastMsg');
+  m.textContent = msg;
+  t.style.borderColor = isError ? '#ff6b6b' : '#c084fc';
+  t.style.color       = isError ? '#ff6b6b' : '#c084fc';
+  t.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3500);
+}
+
+// ─── POST to Google Sheet (no-cors) ───────────────────────────────────────
+function sendToSheet(url, payload){
+  if(!url) return;
+  fetch(url, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  }).catch(function(e){ console.warn('GSheet error:', e); });
+}
+
+// ─── Case Submission ──────────────────────────────────────────────────────
+function submitCase(){
+  var name   = document.getElementById('cs-name').value;
+  var caseId = document.getElementById('cs-caseId').value.trim();
+  var origin = document.getElementById('cs-origin').value;
+  if(!name || !caseId || !origin){
+    showToast('Please fill all required fields', true); return;
+  }
+  var entry = {
+    timestamp: new Date().toLocaleString('en-IN'),
+    name: name, caseId: caseId, origin: origin
+  };
+  sendToSheet(CASE_GSHEET_URL, entry);
+  document.getElementById('cs-name').value   = '';
+  document.getElementById('cs-caseId').value = '';
+  document.getElementById('cs-origin').value = '';
+  showToast('✓ Case submitted successfully!');
+}
+
+// ─── Email Productivity ───────────────────────────────────────────────────
+function submitEmailProductivity(){
+  var name       = document.getElementById('ep-name').value;
+  var originEl   = document.querySelector('input[name="ep-origin"]:checked');
+  var caseNumber = document.getElementById('ep-caseNumber').value.trim();
+  var date       = document.getElementById('ep-date').value;
+  var email      = document.getElementById('ep-email').value.trim();
+
+  if(!name || !originEl || !caseNumber || !date || !email){
+    showToast('Please fill all required fields', true); return;
+  }
+  var btn = document.getElementById('ep-submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Submitting…';
+
+  var payload = {
+    name: name, origin: originEl.value,
+    caseNumber: caseNumber, date: date,
+    email: email, timestamp: new Date().toISOString()
+  };
+
+  sendToSheet(EMAIL_GSHEET_URL, payload);
+
+  // Reset form after brief delay (simulate async)
+  setTimeout(function(){
+    document.getElementById('ep-name').value = '';
+    document.querySelectorAll('input[name="ep-origin"]').forEach(function(r){ r.checked=false; });
+    document.getElementById('ep-caseNumber').value = '';
+    document.getElementById('ep-date').value = new Date().toISOString().split('T')[0];
+    document.getElementById('ep-email').value = '';
+    btn.disabled = false;
+    btn.innerHTML = 'Submit Entry →';
+    showToast('✅ Entry submitted successfully!');
+  }, 900);
+}
+</script>
+</body>
+</html>
