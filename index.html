@@ -19,11 +19,11 @@ body{
   min-height:100vh;position:relative;
   display:flex;align-items:center;justify-content:center;
   padding:20px;overflow-x:hidden;
-  background:linear-gradient(160deg,#0a0520 0%,#08081c 60%,#04102a 100%);
+  background:linear-gradient(160deg,#1e0f45 0%,#18184a 60%,#0d2860 100%);
 }
 
 /* ─── Animated bg orbs ─── */
-.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.14;pointer-events:none;animation:orb-float 9s ease-in-out infinite alternate;}
+.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.28;pointer-events:none;animation:orb-float 9s ease-in-out infinite alternate;}
 .orb1{width:480px;height:480px;background:radial-gradient(circle,#7c4dff,#3b1fa8);top:-140px;left:-120px;}
 .orb2{width:380px;height:380px;background:radial-gradient(circle,#1a5fff,#00288a);bottom:-100px;right:-100px;animation-delay:-4.5s;}
 @keyframes orb-float{from{transform:translate(0,0) scale(1);}to{transform:translate(35px,25px) scale(1.07);}}
@@ -35,7 +35,7 @@ body{
 
 /* ─── Card shell (shared) ─── */
 .card{
-  width:100%;background:rgba(14,7,38,0.62);
+  width:100%;background:rgba(30,15,70,0.65);
   backdrop-filter:blur(30px) saturate(1.4);
   -webkit-backdrop-filter:blur(30px) saturate(1.4);
   border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
@@ -54,7 +54,7 @@ h1{font-size:21px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1
 label.field-lbl{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(200,180,255,.8);margin-bottom:7px}
 .req{color:#c084fc;font-size:14px;line-height:1}
 input,select{
-  width:100%;background:rgba(255,255,255,0.07);
+  width:100%;background:rgba(255,255,255,0.10);
   border:1.5px solid rgba(180,140,255,0.18);border-radius:12px;
   padding:11px 15px;font-family:'Plus Jakarta Sans',sans-serif;
   font-size:14px;color:#fff;outline:none;
@@ -85,10 +85,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
 }
 .radio-dot{width:10px;height:10px;border:2px solid rgba(140,180,255,.6);border-radius:50%;transition:all .2s;flex-shrink:0;}
 .radio-option input[type="radio"]:checked + label{
-  background:rgba(60,100,220,.35);border-color:rgba(100,160,255,.65);
-  color:#fff;box-shadow:0 0 0 2px rgba(80,140,255,.2);
+  background:linear-gradient(135deg,rgba(124,77,255,.3),rgba(0,200,255,.2));border-color:rgba(100,200,255,.65);
+  color:#fff;box-shadow:0 0 0 2px rgba(124,77,255,.2);
 }
-.radio-option input[type="radio"]:checked + label .radio-dot{background:#6abeff;border-color:#6abeff;box-shadow:0 0 8px rgba(106,190,255,.6);}
+.radio-option input[type="radio"]:checked + label .radio-dot{background:linear-gradient(135deg,#9c6fff,#00c8ff);border-color:#6abeff;box-shadow:0 0 8px rgba(124,200,255,.7);}
 
 /* ─── Buttons ─── */
 .btn{
@@ -102,8 +102,8 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
   box-shadow:0 6px 26px rgba(124,77,255,.44);
 }
 .btn-blue{
-  background:linear-gradient(135deg,#1a5fff 0%,#0a3acc 60%,#1a3fa8 100%);
-  box-shadow:0 6px 22px rgba(20,80,255,.4);
+  background:linear-gradient(135deg,#7c4dff 0%,#4466ff 55%,#00c8ff 100%);
+  box-shadow:0 6px 22px rgba(80,140,255,.45);
 }
 .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.16),transparent);opacity:0;transition:opacity .2s}
 .btn:hover{transform:translateY(-2px);opacity:.94}
@@ -132,14 +132,14 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
 .home-card{
   display:flex;align-items:center;gap:18px;padding:20px 22px;
   border-radius:16px;border:1.5px solid rgba(180,140,255,.16);
-  background:rgba(14,7,38,.5);cursor:pointer;transition:all .25s;
+  background:rgba(30,15,70,.55);cursor:pointer;transition:all .25s;
   backdrop-filter:blur(20px);text-align:left;
   box-shadow:0 4px 24px rgba(0,0,0,.25);
 }
 .home-card:hover{border-color:rgba(124,77,255,.5);background:rgba(30,10,70,.6);transform:translateY(-2px);box-shadow:0 10px 36px rgba(124,77,255,.2);}
 .home-card-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;}
 .hc-purple{background:linear-gradient(135deg,rgba(124,77,255,.25),rgba(156,111,255,.15));border:1px solid rgba(124,77,255,.3);}
-.hc-blue{background:linear-gradient(135deg,rgba(26,95,255,.25),rgba(10,58,204,.15));border:1px solid rgba(26,95,255,.3);}
+.hc-blue{background:linear-gradient(135deg,rgba(124,77,255,.2),rgba(0,180,255,.15));border:1px solid rgba(80,180,255,.3);}
 .home-card-text h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:3px}
 .home-card-text p{font-size:12px;color:rgba(200,180,255,.5)}
 .home-card-arrow{margin-left:auto;color:rgba(200,180,255,.3);font-size:18px;transition:transform .2s,color .2s;}
@@ -185,7 +185,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
   </div>
   <div class="home-cards">
     <button class="home-card" onclick="goTo('page-case')">
-      <div class="home-card-icon hc-purple">📋</div>
+      <div class="home-card-icon hc-purple"><img src="data:image/png;base64,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" style="width:32px;height:32px;object-fit:contain;"/></div>
       <div class="home-card-text">
         <h3>Case Submission</h3>
         <p>Submit a new case with agent, case ID & origin</p>
@@ -193,7 +193,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
       <div class="home-card-arrow">›</div>
     </button>
     <button class="home-card" onclick="goTo('page-email')">
-      <div class="home-card-icon hc-blue">📧</div>
+      <div class="home-card-icon hc-blue"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAD4ElEQVR42u2azYscVRTFz+3qiS7TwmQTxehEt65CdBOSbIwk4kJx4R8hBj8gEBVx78a14FZIYFAYCMzaxJAIIoiQ0VGIEQ0kCxEn0931c5FXeHmp6q6a7q7uNu9AQdG8eu/e8865r+tSUkJCQkJCQkJCwsMJqzMIMEmduuMXAEjKzYzJZ7qf/FKiTuw2bgIzI0x0VNIzC64EJOWSbpjZFZ9DYwKATpjwOUkXJT29ZAL4VdJpST9IMjPLywZ1x7Bpkn6R9KWkt8Lv9yRlC5r0UNK+EPe6pFvhnr16KHP3p4HfuY8+i4cipj+BV8pyaJJ4J1hAQAZ0w/1BYCMsNAzXvOHj2ADWQqzdaAM7tasm0AOuAScdIStu3IcugMEck/drf+TiW3EbeBy4DOwfezI4AvYD/wA58G7FxPO2RLHmH4XkSzbqXMhhpykBPeC2W2wdWHUkFJZ4Aths2RJ+nU3gkJP8Srh/DLjgnrkN9JoScCewtxsm+Rk4UcH0+y1Zws/9cYUyTwA3wpjdkMOdvRJAmKDvZHeuYuFTwM0ZWuKBKl+yEWedOvohdqZBQCG94v4rZ4luZIlLU7aEn+dSVOWLdQ84yedu/FQJiNWwBRwfUXymYQn/7PkK5R0DtiuUN3UC4sCGwHsVgZ2Z0BLFM7eAlyqIfieyJ20REFviQo1TIq9piTpVfrVC8q0SEO/UFnCsYqfOu3kGNSX/QaSszEl+q6TQzY0Aap4SL0aWqKotN4FTI6p8v4GtWiMgtsQ6cKBEuv5dokjCJ7IBHKyQ/MWGVmqdgHgnt8ecEjvuuZ0Rymki+bkTEFtiCLwdJVascRh4I1yHi/UnlPzCEFB2SjxgiWhtf3qsAl/sQfKNCejMsDtT9A4Hkl6V9A1w0swGZtYPwewryDCzvpkNwiv4ZUmvh2dnGucsCfBtt4GkQ5I2gc+Ao8AjZrZrZn3gUeAF4HNJm5LWQnurO+sGrFV0gXuSfpLUc73BSZFHhG+HfmMm6clwVY2dpEtsku5KWjOzu3GXuNtiw7LjGpeZpKfCFTc1s5aU2ToBBTK3yzgldubRbZ4HAW3Wn+UIIhGQCEgEJAISAYmAxSLAtDyfw+zpb/84Au6Fi/9B4oSXsf5YAsKLUGZmf0v6OrA2XOLkhyGHK2b2V8iNkbIIg4bAEUlXA3umxf0qZFTyxSYfMbPrRW5jfQF0zCwHzkr6xL285EuSfOZye9PMPi1LfrRx/uvDvwZ8z/LhO+Bln0vtyliihEzS85KelfR4SfHMJf22AAopPpP7UdK3wcqdqi/EGilhKct/jdjTp7IJCQkJCQkJCQkPKf4FK7cWDqlEiIIAAAAASUVORK5CYII=" style="width:32px;height:32px;object-fit:contain;"/></div>
       <div class="home-card-text">
         <h3>Email Productivity</h3>
         <p>Log productivity — agent, origin, case, date & email</p>
@@ -211,9 +211,8 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
   </button>
   <div class="card">
     <div class="card-header">
-      <div class="icon-wrap">
-        <!-- Case submission icon (same as original) -->
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrCAYAAADw4IlaAABO60lEQVR4nO29e7Rt2V3X+fnNx1prP87j3lu37q1XKiESUEACBFBAFBWI7YPGpm2kBVFppXvQQ4baDuxWW+xupLu1BVQw0hhf3WgLjZEAQSFRCeRBEgJ5UFJJqlKp56177j2P/VhrzTl//fdca++999vnHmMlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==" alt=""/>
+      <div class="icon-wrap" style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(124,77,255,.3),rgba(192,132,252,.15));border:1px solid rgba(180,140,255,.3);display:flex;align-items:center;justify-content:center;">
+        <img src="data:image/png;base64,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" style="width:36px;height:36px;object-fit:contain;"/>
       </div>
       <div>
         <div class="page-tag">Form 1</div>
@@ -270,7 +269,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1)
   </button>
   <div class="card">
     <div class="card-header">
-      <div class="home-card-icon hc-blue" style="width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;">📧</div>
+      <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(26,95,255,.3),rgba(106,190,255,.15));border:1px solid rgba(80,160,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAD4ElEQVR42u2azYscVRTFz+3qiS7TwmQTxehEt65CdBOSbIwk4kJx4R8hBj8gEBVx78a14FZIYFAYCMzaxJAIIoiQ0VGIEQ0kCxEn0931c5FXeHmp6q6a7q7uNu9AQdG8eu/e8865r+tSUkJCQkJCQkJCwsMJqzMIMEmduuMXAEjKzYzJZ7qf/FKiTuw2bgIzI0x0VNIzC64EJOWSbpjZFZ9DYwKATpjwOUkXJT29ZAL4VdJpST9IMjPLywZ1x7Bpkn6R9KWkt8Lv9yRlC5r0UNK+EPe6pFvhnr16KHP3p4HfuY8+i4cipj+BV8pyaJJ4J1hAQAZ0w/1BYCMsNAzXvOHj2ADWQqzdaAM7tasm0AOuAScdIStu3IcugMEck/drf+TiW3EbeBy4DOwfezI4AvYD/wA58G7FxPO2RLHmH4XkSzbqXMhhpykBPeC2W2wdWHUkFJZ4Aths2RJ+nU3gkJP8Srh/DLjgnrkN9JoScCewtxsm+Rk4UcH0+y1Zws/9cYUyTwA3wpjdkMOdvRJAmKDvZHeuYuFTwM0ZWuKBKl+yEWedOvohdqZBQCG94v4rZ4luZIlLU7aEn+dSVOWLdQ84yedu/FQJiNWwBRwfUXymYQn/7PkK5R0DtiuUN3UC4sCGwHsVgZ2Z0BLFM7eAlyqIfieyJ20REFviQo1TIq9piTpVfrVC8q0SEO/UFnCsYqfOu3kGNSX/QaSszEl+q6TQzY0Aap4SL0aWqKotN4FTI6p8v4GtWiMgtsQ6cKBEuv5dokjCJ7IBHKyQ/MWGVmqdgHgnt8ecEjvuuZ0Rymki+bkTEFtiCLwdJVascRh4I1yHi/UnlPzCEFB2SjxgiWhtf3qsAl/sQfKNCejMsDtT9A4Hkl6V9A1w0swGZtYPwewryDCzvpkNwiv4ZUmvh2dnGucsCfBtt4GkQ5I2gc+Ao8AjZrZrZn3gUeAF4HNJm5LWQnurO+sGrFV0gXuSfpLUc73BSZFHhG+HfmMm6clwVY2dpEtsku5KWjOzu3GXuNtiw7LjGpeZpKfCFTc1s5aU2ToBBTK3yzgldubRbZ4HAW3Wn+UIIhGQCEgEJAISAYmAxSLAtDyfw+zpb/84Au6Fi/9B4oSXsf5YAsKLUGZmf0v6OrA2XOLkhyGHK2b2V8iNkbIIg4bAEUlXA3umxf0qZFTyxSYfMbPrRW5jfQF0zCwHzkr6xL285EuSfOZye9PMPi1LfrRx/uvDvwZ8z/LhO+Bln0vtyliihEzS85KelfR4SfHMJf22AAopPpP7UdK3wcqdqi/EGilhKct/jdjTp7IJCQkJCQkJCQkPKf4FK7cWDqlEiIIAAAAASUVORK5CYII=" style="width:36px;height:36px;object-fit:contain;"/></div>
       <div style="margin-left:4px">
         <div class="page-tag">Form 2</div>
         <h1>Email Productivity</h1>
