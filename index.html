@@ -1,439 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<link rel="icon" type="image/png" href="data:image/png;base64,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"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Agent Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --purple:#7c4dff;--purple-light:#9c6fff;--blue:#1a5fff;--blue-dark:#0a3acc;
-  --card-bg:rgba(255,255,255,0.07);--border:rgba(180,140,255,0.22);
-  --radius:18px;
-}
-html,body{min-height:100%;width:100%}
-body{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  min-height:100vh;position:relative;
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;overflow-x:hidden;
-  background:linear-gradient(160deg,#1e0f45 0%,#18184a 60%,#0d2860 100%);
-}
-
-/* ─── Animated bg orbs ─── */
-.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.28;pointer-events:none;animation:orb-float 9s ease-in-out infinite alternate;}
-.orb1{width:480px;height:480px;background:radial-gradient(circle,#7c4dff,#3b1fa8);top:-140px;left:-120px;}
-.orb2{width:380px;height:380px;background:radial-gradient(circle,#1a5fff,#00288a);bottom:-100px;right:-100px;animation-delay:-4.5s;}
-@keyframes orb-float{from{transform:translate(0,0) scale(1);}to{transform:translate(35px,25px) scale(1.07);}}
-
-/* ─── Page system ─── */
-.page{display:none;width:100%;max-width:520px;animation:rise .6s cubic-bezier(.22,.68,0,1.15) both}
-.page.active{display:flex;flex-direction:column;align-items:center;}
-@keyframes rise{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-
-/* ─── Card shell (shared) ─── */
-.card{
-  width:100%;background:rgba(30,15,70,0.65);
-  backdrop-filter:blur(30px) saturate(1.4);
-  -webkit-backdrop-filter:blur(30px) saturate(1.4);
-  border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
-  box-shadow:0 28px 72px rgba(0,0,0,0.52),0 0 0 1px rgba(255,255,255,0.04) inset;
-}
-.card-header{padding:28px 32px 0;display:flex;align-items:center;gap:14px}
-.icon-wrap{width:88px;height:60px;flex-shrink:0}
-.icon-wrap img{width:100%;height:100%;object-fit:contain;display:block}
-.page-tag{font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.15em;color:#c084fc;text-transform:uppercase;margin-bottom:3px;opacity:.75}
-h1{font-size:21px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.15}
-.hline{height:1px;margin:20px 32px 0;background:linear-gradient(90deg,rgba(124,77,255,.5),rgba(77,182,245,.3),transparent)}
-.card-body{padding:20px 32px 28px}
-
-/* ─── Fields ─── */
-.field{margin-bottom:16px}
-label.field-lbl{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(200,180,255,.8);margin-bottom:7px}
-.req{color:#c084fc;font-size:14px;line-height:1}
-input,select{
-  width:100%;background:rgba(255,255,255,0.10);
-  border:1.5px solid rgba(180,140,255,0.18);border-radius:12px;
-  padding:11px 15px;font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:14px;color:#fff;outline:none;
-  transition:border-color .2s,box-shadow .2s,background .2s;
-  appearance:none;-webkit-appearance:none;
-}
-input::placeholder{color:rgba(255,255,255,.28)}
-input:focus,select:focus{border-color:rgba(124,77,255,.75);box-shadow:0 0 0 3px rgba(124,77,255,.18);background:rgba(255,255,255,.1)}
-.select-wrap{position:relative}
-.select-wrap::after{
-  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
-  width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;
-  border-top:6px solid rgba(200,180,255,.5);pointer-events:none;
-}
-select option{background:#0e0726;color:#fff}
-input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1) hue-rotate(195deg) brightness(1.3);cursor:pointer;}
-
-/* Radio group (Email Productivity form) */
-.radio-group{display:flex;gap:10px;}
-.radio-option{flex:1;position:relative;}
-.radio-option input[type="radio"]{display:none;}
-.radio-option label{
-  display:flex;align-items:center;justify-content:center;gap:7px;
-  padding:10px 14px;border-radius:11px;border:1.5px solid rgba(180,140,255,0.18);
-  background:rgba(255,255,255,.05);color:rgba(200,180,255,.7);
-  font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;
-  text-transform:none;letter-spacing:0;margin-bottom:0;user-select:none;
-}
-.radio-dot{width:10px;height:10px;border:2px solid rgba(140,180,255,.6);border-radius:50%;transition:all .2s;flex-shrink:0;}
-.radio-option input[type="radio"]:checked + label{
-  background:linear-gradient(135deg,rgba(124,77,255,.3),rgba(0,200,255,.2));border-color:rgba(100,200,255,.65);
-  color:#fff;box-shadow:0 0 0 2px rgba(124,77,255,.2);
-}
-.radio-option input[type="radio"]:checked + label .radio-dot{background:linear-gradient(135deg,#9c6fff,#00c8ff);border-color:#6abeff;box-shadow:0 0 8px rgba(124,200,255,.7);}
-
-/* ─── Buttons ─── */
-.btn{
-  width:100%;margin-top:4px;padding:13px;border:none;border-radius:13px;
-  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;
-  letter-spacing:.02em;cursor:pointer;position:relative;overflow:hidden;
-  transition:transform .15s,box-shadow .2s,opacity .2s;
-}
-.btn-purple{
-  background:linear-gradient(135deg,#7c4dff 0%,#9c6fff 55%,#c084fc 100%);
-  box-shadow:0 6px 26px rgba(124,77,255,.44);
-}
-.btn-blue{
-  background:linear-gradient(135deg,#7c4dff 0%,#4466ff 55%,#00c8ff 100%);
-  box-shadow:0 6px 22px rgba(80,140,255,.45);
-}
-.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.16),transparent);opacity:0;transition:opacity .2s}
-.btn:hover{transform:translateY(-2px);opacity:.94}
-.btn:hover::before{opacity:1}
-.btn:active{transform:translateY(0)}
-.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-
-/* ─── Back button ─── */
-.back-btn{
-  display:inline-flex;align-items:center;gap:7px;
-  margin-bottom:14px;padding:9px 18px;border-radius:30px;border:none;
-  background:rgba(255,255,255,.07);color:rgba(200,180,255,.7);
-  font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;
-  cursor:pointer;transition:all .2s;align-self:flex-start;
-  border:1px solid rgba(180,140,255,.15);
-}
-.back-btn:hover{background:rgba(124,77,255,.18);color:#fff;border-color:rgba(180,140,255,.35);}
-.back-btn svg{flex-shrink:0}
-
-/* ─── Home page ─── */
-.home-title{text-align:center;margin-bottom:30px;}
-.home-title .top-tag{font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.2em;color:#c084fc;text-transform:uppercase;margin-bottom:10px;opacity:.75;display:block}
-.home-title h1{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1}
-.home-title p{font-size:13px;color:rgba(200,180,255,.55);margin-top:7px}
-.home-cards{display:flex;flex-direction:column;gap:14px;width:100%;}
-.home-card{
-  display:flex;align-items:center;gap:18px;padding:20px 22px;
-  border-radius:16px;border:1.5px solid rgba(180,140,255,.16);
-  background:rgba(30,15,70,.55);cursor:pointer;transition:all .25s;
-  backdrop-filter:blur(20px);text-align:left;
-  box-shadow:0 4px 24px rgba(0,0,0,.25);
-}
-.home-card:hover{border-color:rgba(124,77,255,.5);background:rgba(30,10,70,.6);transform:translateY(-2px);box-shadow:0 10px 36px rgba(124,77,255,.2);}
-.home-card-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;}
-.hc-purple{background:linear-gradient(135deg,rgba(124,77,255,.25),rgba(156,111,255,.15));border:1px solid rgba(124,77,255,.3);}
-.hc-blue{background:linear-gradient(135deg,rgba(124,77,255,.2),rgba(0,180,255,.15));border:1px solid rgba(80,180,255,.3);}
-.home-card-text h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:3px}
-.home-card-text p{font-size:12px;color:rgba(200,180,255,.5)}
-.home-card-arrow{margin-left:auto;color:rgba(200,180,255,.3);font-size:18px;transition:transform .2s,color .2s;}
-.home-card:hover .home-card-arrow{transform:translateX(4px);color:rgba(200,180,255,.7);}
-
-/* ─── Toast ─── */
-.toast{
-  position:fixed;bottom:26px;left:50%;
-  transform:translateX(-50%) translateY(60px);
-  background:rgba(14,7,38,.93);border:1px solid #c084fc;color:#c084fc;
-  padding:11px 22px;border-radius:40px;font-size:13px;font-weight:600;
-  box-shadow:0 8px 32px rgba(0,0,0,.4);
-  transition:transform .4s cubic-bezier(.22,.68,0,1.2),opacity .3s;
-  opacity:0;z-index:999;display:flex;align-items:center;gap:8px;
-  white-space:nowrap;backdrop-filter:blur(12px);pointer-events:none;
-}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-/* Spinner */
-.spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px;}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ─── Responsive ─── */
-@media(max-width:480px){
-  .card-header,.card-body{padding-left:20px;padding-right:20px}
-  .hline{margin-left:20px;margin-right:20px}
-  h1{font-size:18px}
-  .radio-group{flex-direction:column}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philips Productivity Tracker</title>
 </head>
 <body>
-
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-
-<!-- ══════════════════ HOME PAGE ══════════════════ -->
-<div class="page active" id="page-home">
-  <div class="home-title">
-    <span class="top-tag">Agent Portal</span>
-    <h1>Choose a Form</h1>
-    <p>Select the form you'd like to fill out</p>
-  </div>
-  <div class="home-cards">
-    <button class="home-card" onclick="goTo('page-case')">
-      <div class="home-card-icon hc-purple"><img src="data:image/png;base64,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" style="width:32px;height:32px;object-fit:contain;"/></div>
-      <div class="home-card-text">
-        <h3>Case Submission</h3>
-        <p>Submit a new case with agent, case ID & origin</p>
-      </div>
-      <div class="home-card-arrow">›</div>
-    </button>
-    <button class="home-card" onclick="goTo('page-email')">
-      <div class="home-card-icon hc-blue"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAD4ElEQVR42u2azYscVRTFz+3qiS7TwmQTxehEt65CdBOSbIwk4kJx4R8hBj8gEBVx78a14FZIYFAYCMzaxJAIIoiQ0VGIEQ0kCxEn0931c5FXeHmp6q6a7q7uNu9AQdG8eu/e8865r+tSUkJCQkJCQkJCwsMJqzMIMEmduuMXAEjKzYzJZ7qf/FKiTuw2bgIzI0x0VNIzC64EJOWSbpjZFZ9DYwKATpjwOUkXJT29ZAL4VdJpST9IMjPLywZ1x7Bpkn6R9KWkt8Lv9yRlC5r0UNK+EPe6pFvhnr16KHP3p4HfuY8+i4cipj+BV8pyaJJ4J1hAQAZ0w/1BYCMsNAzXvOHj2ADWQqzdaAM7tasm0AOuAScdIStu3IcugMEck/drf+TiW3EbeBy4DOwfezI4AvYD/wA58G7FxPO2RLHmH4XkSzbqXMhhpykBPeC2W2wdWHUkFJZ4Aths2RJ+nU3gkJP8Srh/DLjgnrkN9JoScCewtxsm+Rk4UcH0+y1Zws/9cYUyTwA3wpjdkMOdvRJAmKDvZHeuYuFTwM0ZWuKBKl+yEWedOvohdqZBQCG94v4rZ4luZIlLU7aEn+dSVOWLdQ84yedu/FQJiNWwBRwfUXymYQn/7PkK5R0DtiuUN3UC4sCGwHsVgZ2Z0BLFM7eAlyqIfieyJ20REFviQo1TIq9piTpVfrVC8q0SEO/UFnCsYqfOu3kGNSX/QaSszEl+q6TQzY0Aap4SL0aWqKotN4FTI6p8v4GtWiMgtsQ6cKBEuv5dokjCJ7IBHKyQ/MWGVmqdgHgnt8ecEjvuuZ0Rymki+bkTEFtiCLwdJVascRh4I1yHi/UnlPzCEFB2SjxgiWhtf3qsAl/sQfKNCejMsDtT9A4Hkl6V9A1w0swGZtYPwewryDCzvpkNwiv4ZUmvh2dnGucsCfBtt4GkQ5I2gc+Ao8AjZrZrZn3gUeAF4HNJm5LWQnurO+sGrFV0gXuSfpLUc73BSZFHhG+HfmMm6clwVY2dpEtsku5KWjOzu3GXuNtiw7LjGpeZpKfCFTc1s5aU2ToBBTK3yzgldubRbZ4HAW3Wn+UIIhGQCEgEJAISAYmAxSLAtDyfw+zpb/84Au6Fi/9B4oSXsf5YAsKLUGZmf0v6OrA2XOLkhyGHK2b2V8iNkbIIg4bAEUlXA3umxf0qZFTyxSYfMbPrRW5jfQF0zCwHzkr6xL285EuSfOZye9PMPi1LfrRx/uvDvwZ8z/LhO+Bln0vtyliihEzS85KelfR4SfHMJf22AAopPpP7UdK3wcqdqi/EGilhKct/jdjTp7IJCQkJCQkJCQkPKf4FK7cWDqlEiIIAAAAASUVORK5CYII=" style="width:32px;height:32px;object-fit:contain;"/></div>
-      <div class="home-card-text">
-        <h3>Email Productivity</h3>
-        <p>Log productivity — agent, origin, case, date & email</p>
-      </div>
-      <div class="home-card-arrow">›</div>
-    </button>
-  </div>
-</div>
-
-<!-- ══════════════════ CASE SUBMISSION ══════════════════ -->
-<div class="page" id="page-case">
-  <button class="back-btn" onclick="goTo('page-home')">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to Home
-  </button>
-  <div class="card">
-    <div class="card-header">
-      <div class="icon-wrap" style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(124,77,255,.3),rgba(192,132,252,.15));border:1px solid rgba(180,140,255,.3);display:flex;align-items:center;justify-content:center;">
-        <img src="data:image/png;base64,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" style="width:36px;height:36px;object-fit:contain;"/>
-      </div>
-      <div>
-        <div class="page-tag">Form 1</div>
-        <h1>Case Submission</h1>
-      </div>
-    </div>
-    <div class="hline"></div>
-    <div class="card-body">
-
-      <div class="field">
-        <label class="field-lbl" for="cs-name">Name <span class="req">*</span></label>
-        <div class="select-wrap">
-          <select id="cs-name" required>
-            <option value="" disabled selected>Select agent name</option>
-            <option>Deepak Saw</option>
-            <option>Siddharth Jaiswal</option>
-            <option>Deepak Kumar</option>
-            <option>Priyanshu Sekhar</option>
-            <option>Dipok Yadav</option>
-            <option>Mohit Gupta</option>
-          </select>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#callback-form">Supervisor Callback</a></li>
+        </ul>
+    </nav>
+    <div id="home">
+        <h1>Welcome to Philips Productivity Tracker</h1>
+        <div class="form-card">
+            <h2>Supervisor Callback Form</h2>
+            <form id="callback-form">
+                <label for="consumerContact">Consumer Contact:</label>
+                <input type="text" id="consumerContact" name="consumerContact" required><br>
+                <label for="referenceCase">Reference Case:</label>
+                <input type="text" id="referenceCase" name="referenceCase" required><br>
+                <label for="callBackReason">Call Back Reason:</label>
+                <input type="text" id="callBackReason" name="callBackReason" required><br>
+                <label for="callBackTime">Call Back Time:</label>
+                <select id="callBackTime" name="callBackTime">
+                    <option value="24 Hours">24 Hours</option>
+                    <option value="Same Day">Same Day</option>
+                    <option value="Urgent Call-Back Required">Urgent Call-Back Required</option>
+                </select><br>
+                <label for="consumerPreferredTime">Consumer Preferred Time:</label>
+                <input type="time" id="consumerPreferredTime" name="consumerPreferredTime" required><br>
+                <button type="submit">Submit</button>
+            </form>
         </div>
-      </div>
-
-      <div class="field">
-        <label class="field-lbl" for="cs-caseId">Case ID <span class="req">*</span></label>
-        <input type="text" id="cs-caseId" placeholder="Enter Case ID" required autocomplete="off"/>
-      </div>
-
-      <div class="field">
-        <label class="field-lbl" for="cs-origin">Origin <span class="req">*</span></label>
-        <div class="select-wrap">
-          <select id="cs-origin" required>
-            <option value="" disabled selected>Select origin</option>
-            <option>Croma</option>
-            <option>Nykaa</option>
-            <option>Firstcry- Portal</option>
-            <option>Firstcry- Email</option>
-            <option>Vijay Sales</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="btn btn-purple" onclick="submitCase()">Submit Case →</button>
     </div>
-  </div>
-</div>
-
-<!-- ══════════════════ EMAIL PRODUCTIVITY ══════════════════ -->
-<div class="page" id="page-email">
-  <button class="back-btn" onclick="goTo('page-home')">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to Home
-  </button>
-  <div class="card">
-    <div class="card-header">
-      <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(26,95,255,.3),rgba(106,190,255,.15));border:1px solid rgba(80,160,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAD4ElEQVR42u2azYscVRTFz+3qiS7TwmQTxehEt65CdBOSbIwk4kJx4R8hBj8gEBVx78a14FZIYFAYCMzaxJAIIoiQ0VGIEQ0kCxEn0931c5FXeHmp6q6a7q7uNu9AQdG8eu/e8865r+tSUkJCQkJCQkJCwsMJqzMIMEmduuMXAEjKzYzJZ7qf/FKiTuw2bgIzI0x0VNIzC64EJOWSbpjZFZ9DYwKATpjwOUkXJT29ZAL4VdJpST9IMjPLywZ1x7Bpkn6R9KWkt8Lv9yRlC5r0UNK+EPe6pFvhnr16KHP3p4HfuY8+i4cipj+BV8pyaJJ4J1hAQAZ0w/1BYCMsNAzXvOHj2ADWQqzdaAM7tasm0AOuAScdIStu3IcugMEck/drf+TiW3EbeBy4DOwfezI4AvYD/wA58G7FxPO2RLHmH4XkSzbqXMhhpykBPeC2W2wdWHUkFJZ4Aths2RJ+nU3gkJP8Srh/DLjgnrkN9JoScCewtxsm+Rk4UcH0+y1Zws/9cYUyTwA3wpjdkMOdvRJAmKDvZHeuYuFTwM0ZWuKBKl+yEWedOvohdqZBQCG94v4rZ4luZIlLU7aEn+dSVOWLdQ84yedu/FQJiNWwBRwfUXymYQn/7PkK5R0DtiuUN3UC4sCGwHsVgZ2Z0BLFM7eAlyqIfieyJ20REFviQo1TIq9piTpVfrVC8q0SEO/UFnCsYqfOu3kGNSX/QaSszEl+q6TQzY0Aap4SL0aWqKotN4FTI6p8v4GtWiMgtsQ6cKBEuv5dokjCJ7IBHKyQ/MWGVmqdgHgnt8ecEjvuuZ0Rymki+bkTEFtiCLwdJVascRh4I1yHi/UnlPzCEFB2SjxgiWhtf3qsAl/sQfKNCejMsDtT9A4Hkl6V9A1w0swGZtYPwewryDCzvpkNwiv4ZUmvh2dnGucsCfBtt4GkQ5I2gc+Ao8AjZrZrZn3gUeAF4HNJm5LWQnurO+sGrFV0gXuSfpLUc73BSZFHhG+HfmMm6clwVY2dpEtsku5KWjOzu3GXuNtiw7LjGpeZpKfCFTc1s5aU2ToBBTK3yzgldubRbZ4HAW3Wn+UIIhGQCEgEJAISAYmAxSLAtDyfw+zpb/84Au6Fi/9B4oSXsf5YAsKLUGZmf0v6OrA2XOLkhyGHK2b2V8iNkbIIg4bAEUlXA3umxf0qZFTyxSYfMbPrRW5jfQF0zCwHzkr6xL285EuSfOZye9PMPi1LfrRx/uvDvwZ8z/LhO+Bln0vtyliihEzS85KelfR4SfHMJf22AAopPpP7UdK3wcqdqi/EGilhKct/jdjTp7IJCQkJCQkJCQkPKf4FK7cWDqlEiIIAAAAASUVORK5CYII=" style="width:36px;height:36px;object-fit:contain;"/></div>
-      <div style="margin-left:4px">
-        <div class="page-tag">Form 2</div>
-        <h1>Email Productivity</h1>
-      </div>
-    </div>
-    <div class="hline"></div>
-    <div class="card-body">
-
-      <div class="field">
-        <label class="field-lbl" for="ep-name">👤 Agent Name <span class="req">*</span></label>
-        <div class="select-wrap">
-          <select id="ep-name" required>
-            <option value="" disabled selected>Select Agent</option>
-            <option value="Siddharth">Siddharth</option>
-            <option value="Dipok">Dipok</option>
-            <option value="Deepak Kumar">Deepak Kumar</option>
-            <option value="Deepak Saw">Deepak Saw</option>
-            <option value="Priyanshu">Priyanshu</option>
-            <option value="Mohit">Mohit</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="field-lbl">🌐 Origin <span class="req">*</span></label>
-        <div class="radio-group">
-          <div class="radio-option">
-            <input type="radio" id="ep-web" name="ep-origin" value="Web" required/>
-            <label for="ep-web"><span class="radio-dot"></span>Web</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" id="ep-email-r" name="ep-origin" value="Email"/>
-            <label for="ep-email-r"><span class="radio-dot"></span>Email</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" id="ep-eshop" name="ep-origin" value="Eshop"/>
-            <label for="ep-eshop"><span class="radio-dot"></span>Eshop</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="field-lbl" for="ep-caseNumber">🗂️ Case Number <span class="req">*</span></label>
-        <input type="text" id="ep-caseNumber" placeholder="Enter case number" required autocomplete="off"/>
-      </div>
-
-      <div class="field">
-        <label class="field-lbl" for="ep-date">📅 Date <span class="req">*</span></label>
-        <input type="date" id="ep-date" required/>
-      </div>
-
-      <div class="field">
-        <label class="field-lbl" for="ep-email">✉️ Email Address <span class="req">*</span></label>
-        <input type="email" id="ep-email" placeholder="e.g. name@example.com" required autocomplete="off"/>
-      </div>
-
-      <button class="btn btn-blue" id="ep-submitBtn" onclick="submitEmailProductivity()">Submit Entry →</button>
-    </div>
-  </div>
-</div>
-
-<!-- Toast -->
-<div class="toast" id="toast">
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  <span id="toastMsg">Done!</span>
-</div>
-
-<script>
-// ─── Google Sheet URLs ─────────────────────────────────────────────────────
-var CASE_GSHEET_URL = 'https://script.google.com/macros/s/AKfycby50lm964MC3UKXDdDORr1pS93pdmGtqB5-NQEstVR6iYQHGErjzps55QRLEMGeUObSMA/exec';
-var EMAIL_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbw-fm5b_bjvFD8FR2-sHCRNTW-mxqYFSCVTf326u6e2TMc-ewN1Bhn3D-hj2_HgllIcog/exec';
-// ──────────────────────────────────────────────────────────────────────────
-
-// Set today's date default on load
-window.addEventListener('DOMContentLoaded', function(){
-  var today = new Date().toISOString().split('T')[0];
-  document.getElementById('ep-date').value = today;
-});
-
-// ─── Navigation ───────────────────────────────────────────────────────────
-function goTo(pageId){
-  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-  var target = document.getElementById(pageId);
-  target.classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-// ─── Toast ────────────────────────────────────────────────────────────────
-var _toastTimer;
-function showToast(msg, isError){
-  var t = document.getElementById('toast');
-  var m = document.getElementById('toastMsg');
-  m.textContent = msg;
-  t.style.borderColor = isError ? '#ff6b6b' : '#c084fc';
-  t.style.color       = isError ? '#ff6b6b' : '#c084fc';
-  t.classList.add('show');
-  clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3500);
-}
-
-// ─── POST to Google Sheet (no-cors) ───────────────────────────────────────
-function sendToSheet(url, payload){
-  if(!url) return;
-  fetch(url, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(payload)
-  }).catch(function(e){ console.warn('GSheet error:', e); });
-}
-
-// ─── Case Submission ──────────────────────────────────────────────────────
-function submitCase(){
-  var name   = document.getElementById('cs-name').value;
-  var caseId = document.getElementById('cs-caseId').value.trim();
-  var origin = document.getElementById('cs-origin').value;
-  if(!name || !caseId || !origin){
-    showToast('Please fill all required fields', true); return;
-  }
-  var entry = {
-    timestamp: new Date().toLocaleString('en-IN'),
-    name: name, caseId: caseId, origin: origin
-  };
-  sendToSheet(CASE_GSHEET_URL, entry);
-  document.getElementById('cs-name').value   = '';
-  document.getElementById('cs-caseId').value = '';
-  document.getElementById('cs-origin').value = '';
-  showToast('✓ Case submitted successfully!');
-}
-
-// ─── Email Productivity ───────────────────────────────────────────────────
-function submitEmailProductivity(){
-  var name       = document.getElementById('ep-name').value;
-  var originEl   = document.querySelector('input[name="ep-origin"]:checked');
-  var caseNumber = document.getElementById('ep-caseNumber').value.trim();
-  var date       = document.getElementById('ep-date').value;
-  var email      = document.getElementById('ep-email').value.trim();
-
-  if(!name || !originEl || !caseNumber || !date || !email){
-    showToast('Please fill all required fields', true); return;
-  }
-  var btn = document.getElementById('ep-submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Submitting…';
-
-  var payload = {
-    name: name, origin: originEl.value,
-    caseNumber: caseNumber, date: date,
-    email: email, timestamp: new Date().toISOString()
-  };
-
-  sendToSheet(EMAIL_GSHEET_URL, payload);
-
-  // Reset form after brief delay (simulate async)
-  setTimeout(function(){
-    document.getElementById('ep-name').value = '';
-    document.querySelectorAll('input[name="ep-origin"]').forEach(function(r){ r.checked=false; });
-    document.getElementById('ep-caseNumber').value = '';
-    document.getElementById('ep-date').value = new Date().toISOString().split('T')[0];
-    document.getElementById('ep-email').value = '';
-    btn.disabled = false;
-    btn.innerHTML = 'Submit Entry →';
-    showToast('✅ Entry submitted successfully!');
-  }, 900);
-}
-</script>
+    <script>
+        document.getElementById('callback-form').onsubmit = function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('https://script.google.com/macros/s/AKfycbyWsISnlU3TzYKgxOSoB8gpVznTlbSHYJLNYTbXWcI_DfJ63jjlGegTjfli_NbxoKyaoQ/exec', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Form submitted successfully!');
+                console.log(data);
+            })
+            .catch(error => {
+                alert('Error submitting form.');
+                console.error(error);
+            });
+        };
+    </script>
 </body>
 </html>
